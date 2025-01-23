@@ -6,6 +6,7 @@ import com.unisocial.userservice.dto.UserRegistrationDto;
 import com.unisocial.userservice.model.User;
 import com.unisocial.userservice.security.JwtTokenUtil;
 import com.unisocial.userservice.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -35,7 +36,7 @@ public class AuthController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<?> register(@RequestBody UserRegistrationDto registrationDto) {
+    public ResponseEntity<?> register(@Valid @RequestBody UserRegistrationDto registrationDto) {
         try {
             User user = userService.registerUser(registrationDto);
             String token = jwtTokenUtil.generateToken(user);
