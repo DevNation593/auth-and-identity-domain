@@ -1,0 +1,30 @@
+spring:
+  security:
+    filter:
+      order: 10
+    mvc:
+      throw-exception-if-no-handler-found: true
+    web:
+      resources:
+        add-mappings: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: root
+    password: 140400
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+jwt:
+  secret: ${JWT_SECRET:g6rEvMIkV7P9PdIScOQicGOa5m+Dd0wv7Vf2QQk94hsEMEEjcOOVeSxBUIVuw8zuecGPR2qi4r3SDprYVPjH2J1mZkhyE6eT6mASzCFDfvuetx2q6FaAGTvrYQ42drtSJrHoXKjm9uPWVWtV8RwbEuTyo9e947LyfmK0TuigA04=}
+  expiration: 16000 # 24 horas en milisegundos
+
+server:
+  port: 8080
