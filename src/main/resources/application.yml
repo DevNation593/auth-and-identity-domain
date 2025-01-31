@@ -23,8 +23,8 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 jwt:
-  secret: ${JWT_SECRET:g6rEvMIkV7P9PdIScOQicGOa5m+Dd0wv7Vf2QQk94hsEMEEjcOOVeSxBUIVuw8zuecGPR2qi4r3SDprYVPjH2J1mZkhyE6eT6mASzCFDfvuetx2q6FaAGTvrYQ42drtSJrHoXKjm9uPWVWtV8RwbEuTyo9e947LyfmK0TuigA04=}
-  expiration: 16000 # 24 horas en milisegundos
+  secret: ${env.JWT_SECRET}
+  expiration: 16000
 
 server:
   port: 8080
