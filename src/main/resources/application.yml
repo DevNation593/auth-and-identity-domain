@@ -19,6 +19,7 @@ spring:
 
 jwt:
   secret: g6rEvMIkV7P9PdIScOQicGOa5m+Dd0wv7Vf2QQk94hsEMEEjcOOVeSxBUIVuw8zuecGPR2qi4r3SDprYVPjH2J1mZkhyE6eT6mASzCFDfvuetx2q6FaAGTvrYQ42drtSJrHoXKjm9uPWVWtV8RwbEuTyo9e947LyfmK0TuigA04=
+
   expiration: 16000
 
 server:
