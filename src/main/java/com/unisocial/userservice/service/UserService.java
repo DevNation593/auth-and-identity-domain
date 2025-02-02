@@ -6,6 +6,7 @@ import com.unisocial.userservice.exception.UserAlreadyExistsException;
 import com.unisocial.userservice.exception.UserNotFoundException;
 import com.unisocial.userservice.model.User;
 import com.unisocial.userservice.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +30,7 @@ public class UserService {
                 .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado con email: " + email));
     }
 
-    public User registerUser(UserRegistrationDto registrationDto) {
+    public User registerUser( UserRegistrationDto registrationDto) {
         if (userRepository.existsByEmail(registrationDto.getEmail())) {
             throw new UserAlreadyExistsException("El email ya está registrado: " + registrationDto.getEmail());
         }
