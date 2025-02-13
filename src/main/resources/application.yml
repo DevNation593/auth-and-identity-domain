@@ -2,15 +2,10 @@ spring:
   security:
     filter:
       order: 10
-    mvc:
-      throw-exception-if-no-handler-found: true
-    web:
-      resources:
-        add-mappings: false
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: root
-    password: 140400
+    url: ${{ secrets.DB_URL }}
+    username: ${{ secrets.DB_USER }}
+    password: ${{ secrets.DB_PASS }}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -23,7 +18,7 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 jwt:
-  secret: ${env.JWT_SECRET}
+  secret: ${{ secrets.JWT_SECRET_KEY }}
   expiration: 16000
 
 server:
