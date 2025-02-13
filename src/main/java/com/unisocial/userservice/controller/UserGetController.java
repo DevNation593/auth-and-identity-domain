@@ -1,6 +1,5 @@
 package com.unisocial.userservice.controller;
 
-import com.unisocial.userservice.dto.UserUpdateDto;
 import com.unisocial.userservice.model.User;
 import com.unisocial.userservice.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +11,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 @CrossOrigin
-public class UserController {
+public class UserGetController {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    public UserGetController(UserService userService) {
         this.userService = userService;
     }
 
@@ -35,16 +34,5 @@ public class UserController {
         String email = authentication.getName();
         User user = userService.findByEmail(email);
         return ResponseEntity.ok(user);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserUpdateDto userUpdateDto) {
-        return ResponseEntity.ok(userService.updateUser(id, userUpdateDto));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
-        return ResponseEntity.ok().build();
     }
 }
