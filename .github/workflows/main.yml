@@ -61,7 +61,7 @@ jobs:
           # Esperar un momento para asegurarse de que Docker esté listo
           sleep 10
         
-          docker pull thewadjet/auth-and-identity-domain:latest
-          docker stop auth-and-identity-domain || true
-          docker rm auth-and-identity-domain || true
-          docker run -d --name auth-and-identity-domain -p 8000:8000 thewadjet/auth-and-identity-domain:latest
+          sudo docker pull thewadjet/auth-and-identity-domain:latest
+          sudo docker stop auth-and-identity-domain || true
+          sudo docker rm auth-and-identity-domain || true
+          sudo docker run -d --name auth-and-identity-domain -p 8000:8000 thewadjet/auth-and-identity-domain:latest
