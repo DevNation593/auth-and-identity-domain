@@ -26,9 +26,6 @@ jobs:
     - name: Run Tests
       run: mvn test
       
-    - name: Build Docker image
-      run: docker build -t user-service .
-      
     - name: Login to DockerHub
       uses: docker/login-action@v2
       with:
@@ -50,8 +47,21 @@ jobs:
         host: ${{ secrets.EC2_HOST }}
         username: ec2-user
         key: ${{ secrets.EC2_SSH_KEY }}
+
         script: |
-          docker pull thewadjet/auth-and-identity-domain:latest
-          docker stop auth-and-identity-domain || true
-          docker rm auth-and-identity-domain || true
-          docker run -d --name auth-and-identity-domain -p 8000:8000 thewadjet/auth-and-identity-domain:latest
+          # Verificar si Docker está instalado, si no, instalarlo
+          if ! command -v docker &> /dev/null; then
+            sudo yum update -y
+            sudo yum install -y docker
+            sudo service docker start
+            sudo usermod -a -G docker ec2-user
+            sudo systemctl enable docker
+          fi
+      
+          # Esperar un momento para asegurarse de que Docker esté listo
+          sleep 10
+        
+          sudo docker pull thewadjet/auth-and-identity-domain:latest
+          sudo docker stop auth-and-identity-domain || true
+          sudo docker rm auth-and-identity-domain || true
+          sudo docker run -d --name auth-and-identity-domain -p 8000:8000 thewadjet/auth-and-identity-domain:latest
