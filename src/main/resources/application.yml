@@ -4,7 +4,7 @@ spring:
       order: 10
   datasource:
     url: ${{ DB_URL }}
-    username: ${{ DB_USER }}
+    username: ${{ DB_USERNAME }}
     password: ${{ DB_PASS }}
 
     driver-class-name: org.postgresql.Driver
